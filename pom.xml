@@ -47,6 +47,7 @@
 						<region>us-east-2</region>
 						<workers>1</workers>
 						<workerType>MICRO</workerType>
+						<objectStoreV2>true</objectStoreV2>
 						<properties>
 							<mule.env>${mule.env}</mule.env>
 							<encryption.key>${encryption.key}</encryption.key>
@@ -112,7 +113,7 @@
 
 	<repositories>
 		<repository>
-			<id>anypoint-exchange-v3</id>
+			<id>connectedapp</id>
 			<name>Anypoint Exchange</name>
 			<url>https://maven.anypoint.mulesoft.com/api/v3/maven</url>
 			<layout>default</layout>
