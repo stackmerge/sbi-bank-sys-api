@@ -28,5 +28,4 @@ jobs:
         cache: maven
         
     - name: Build and Deploy to CH with Maven
-      run: mvn -B clean deploy -DmuleDeploy -s settings.xml --file pom.xml -Dmule.env=dev -Dencryption.key=${env.ENCRYPTIO_KEY} -Danypoint.platform.client_id=${env.ENV_CLIENT_ID} -Danypoint.platform.client_secret=${env.ENV_CLIENT_SECRET} -DclientId=${env.CONNECTEDAPP_CLIENT_ID} -DclientSec=${env.CONNECTEDAPP_CLIENT_SECRET}
-
+      run: mvn -B clean deploy -DmuleDeploy -s settings.xml --file pom.xml -Dmule.env=dev
