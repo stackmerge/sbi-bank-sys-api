@@ -1,0 +1,27 @@
+name: Deploy to CloudHub
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  buildAndDeploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Downloading Code
+      uses: actions/checkout@v3
+      
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: maven
+        
+    - name: Build and Deploy to CH with Maven
+      run: mvn -B clean deploy -DmuleDeploy -s settings.xml --file pom.xml -Dmule.env=dev -Dencryption.key=mule1234 -Danypoint.platform.client_id=2db3f25cd24b448f8e8c60fd654d1f67 -Danypoint.platform.client_secret=6788bE150cD845BaA9C7BE1cCB5f7F0a -DclientId=3b198a6a766b4eed8cedb5333a756f30 -DclientSec=0A7418757a364d0Ea5bf8B4db6e87c12 
+
+
