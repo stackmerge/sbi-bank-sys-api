@@ -9,6 +9,12 @@ on:
 jobs:
   buildAndDeploy:
     runs-on: ubuntu-latest
+    env:
+      ENV_CLIENT_SECRET: ${{secrets.ENV_CLIENT_SECRET}}
+      ENV_CLIENT_ID: ${{secrets.ENV_CLIENT_ID}}
+      CONNECTEDAPP_CLIENT_ID: ${{secrets.CONNECTEDAPP_CLIENT_ID}}
+      CONNECTEDAPP_CLIENT_SECRET: ${{secrets.CONNECTEDAPP_CLIENT_SECRET}}
+      ENCRYPTIO_KEY: ${{secrets.ENCRYPTIO_KEY}}
 
     steps:
     - name: Downloading Code
@@ -22,6 +28,5 @@ jobs:
         cache: maven
         
     - name: Build and Deploy to CH with Maven
-      run: mvn -B clean deploy -DmuleDeploy -s settings.xml --file pom.xml -Dmule.env=dev -Dencryption.key=mule1234 -Danypoint.platform.client_id=2db3f25cd24b448f8e8c60fd654d1f67 -Danypoint.platform.client_secret=6788bE150cD845BaA9C7BE1cCB5f7F0a -DclientId=3b198a6a766b4eed8cedb5333a756f30 -DclientSec=0A7418757a364d0Ea5bf8B4db6e87c12 
-
+      run: mvn -B clean deploy -DmuleDeploy -s settings.xml --file pom.xml -Dmule.env=dev -Dencryption.key=${env.ENCRYPTIO_KEY} -Danypoint.platform.client_id=${env.ENV_CLIENT_ID} -Danypoint.platform.client_secret=${env.ENV_CLIENT_SECRET} -DclientId=${env.CONNECTEDAPP_CLIENT_ID} -DclientSec=${env.CONNECTEDAPP_CLIENT_SECRET}
 
