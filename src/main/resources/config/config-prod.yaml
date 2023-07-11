@@ -1,0 +1,7 @@
+db:
+  host: "prod.ashish.com"
+  port: "3306"
+  user: "root"
+  password: "root"
+  dbname: "db1"
+  

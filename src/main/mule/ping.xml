@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="pingFlow" doc:id="2c23b6f6-03d2-458d-a3d8-5233ca6af5a6" >
+		<http:listener doc:name="GET /ping" doc:id="65f45895-0096-4438-84dd-dbc49d519d0e" config-ref="sbi-bank-restful-api-httpListenerConfig" path="/ping"/>
+		<set-payload value="#['Database Host : ' ++ p('db.host')]" doc:name="UP" doc:id="16741ec1-6c40-4ee4-a7ed-6b94df7c7b55" />
+	</flow>
+</mule>

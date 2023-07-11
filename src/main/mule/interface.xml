@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway" xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd 
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd">
+    
+	<flow name="sbi-bank-restful-api-main">
+        <http:listener config-ref="sbi-bank-restful-api-httpListenerConfig" path="/api/*">
+            <http:response statusCode="#[vars.httpStatus default 200]">
+                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
+            </http:response>
+            <http:error-response statusCode="#[vars.httpStatus default 500]">
+                <http:body>#[payload]</http:body>
+                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
+            </http:error-response>
+        </http:listener>
+        <apikit:router config-ref="sbi-bank-restful-api-config" /></flow>
+    <flow name="get:\accounts:sbi-bank-restful-api-config">
+		<flow-ref doc:name="Flow Reference" doc:id="f74d6699-7978-45f8-84ff-c93fb5b0dd92" name="getAccountsFlow" />
+    </flow>
+    <flow name="post:\accounts:application\json:sbi-bank-restful-api-config">
+		<flow-ref doc:name="Flow Reference" doc:id="857b8105-1c81-4c1d-bab3-372411411095" name="createAccountsFlow" />
+    </flow>
+    <flow name="post:\customers:application\json:sbi-bank-restful-api-config">
+		<flow-ref doc:name="Flow Reference" doc:id="c30f4a53-4756-44ce-9afa-872bc7ccb12c" name="createCustomersFlow" />
+    </flow>
+</mule>

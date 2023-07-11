@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="createAccountsFlow" doc:id="39c4e542-e807-4baa-8775-c030e8e042c0" >
+		<ee:transform doc:name="Transform Message">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+  message: "Account created successfully"
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+	</flow>
+	<flow name="getAccountsFlow" doc:id="49f61754-d38a-4cb3-b836-ccb8002570f0" >
+		<ee:transform doc:name="Transform Message">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+[
+  {
+    AccountId: 22289,
+    Status: "Enabled",
+    CreatedUpdateDateTime: "2019-01-01T06:06:06+00:00",
+    Currency: "USD",
+    AccountType: "Saving"
+  }, 
+  {
+    AccountId: 31820,
+    Status: "Enabled",
+    CreatedUpdateDateTime: "2018-01-01T06:06:06+00:00",
+    Currency: "GBP",
+    AccountType: "Current"
+  }
+]]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+	</flow>
+</mule>
