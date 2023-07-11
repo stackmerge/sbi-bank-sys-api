@@ -4,7 +4,7 @@
 		<server>
 			<id>connectedapp</id>
 			<username>~~~Client~~~</username>
-			<password>${clientId}~?~${clientSec}</password>
+			<password>${env.CONNECTEDAPP_CLIENT_ID}~?~${env.CONNECTEDAPP_CLIENT_SECRET}</password>
 		</server>
 	</servers>
 </settings>
