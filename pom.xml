@@ -50,9 +50,9 @@
 						<objectStoreV2>true</objectStoreV2>
 						<properties>
 							<mule.env>${mule.env}</mule.env>
-							<encryption.key>${encryption.key}</encryption.key>
-							<anypoint.platform.client_id>${anypoint.platform.client_id}</anypoint.platform.client_id>
-							<anypoint.platform.client_secret>${anypoint.platform.client_secret}</anypoint.platform.client_secret>
+							<encryption.key>${env.ENCRYPTIO_KEY}</encryption.key>
+							<anypoint.platform.client_id>${env.ENV_CLIENT_ID}</anypoint.platform.client_id>
+							<anypoint.platform.client_secret>${env.ENV_CLIENT_SECRET}</anypoint.platform.client_secret>
 						</properties>
 					</cloudHubDeployment>
 				</configuration>
